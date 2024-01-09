@@ -1,0 +1,2 @@
+INSERT INTO pizzas (`name`, description, photo, price) VALUES('Margherita', 'mozzarella,pomodoro', '', 4);
+INSERT INTO pizzas (`name`, description, photo, price) VALUES('Marinara', 'pomodoro,origano', '', 3);
