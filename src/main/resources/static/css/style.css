@@ -1,0 +1,25 @@
+body{
+    background-image: url('https://static2.bigstockphoto.com/8/6/3/large1500/368318977.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    align-items: center;
+    display:flex;
+    justify-content:center;
+}
+
+th, td{
+color: white;
+}
+
+p{
+background-color: white;
+}
+
+a{
+color: red;
+}
+
+
+
