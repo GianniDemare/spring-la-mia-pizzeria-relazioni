@@ -1,4 +1,4 @@
-package org.learning.springlamiapizzeriacrud;
+package org.learning.springlamiapizzeriacrud.model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringLaMiaPizzeriaCrudApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
 	}
 
