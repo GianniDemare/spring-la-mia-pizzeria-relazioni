@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Errore</title>
+    <title>Error</title>
 </head>
 <body>
-<h1>Errore</h1>
-<p th:text="${error}" class="error-message"></p>
+<h1>Error</h1>
+<h2 th:text="${status}"></h2>
+<p>Message: <span th:text="${message}"></span></p>
+<a th:href="@{/pizzas}">Back to pizza list</a>
+<p th:text="${trace}"></p>
 </body>
 </html>
