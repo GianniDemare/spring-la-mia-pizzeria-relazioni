@@ -13,7 +13,7 @@
 <body>
 <div class="container text-center">
 
-    <h1 class="">Deve essere successo qualcosa di alieno!</h1>
+    <h1 class="">Error!</h1>
 
     <h2 class="" th:text="${status}"></h2>
 
@@ -23,7 +23,7 @@
 
     <p class="text-danger">Message: <span th:text="${message}"></span></p>
 
-    <div><a th:href="@{/pizze}"> Torna alla lista delle pizze</a></div>
+    <div><a th:href="@{/pizze}">back to the pizza list</a></div>
 
     <p th:text="${trace}"></p>
 </div>
