@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringLaMiaPizzeriaCrudApplication {
 
 	public static void main(String[] args) {
-// ciao //
+
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
 	}
 
