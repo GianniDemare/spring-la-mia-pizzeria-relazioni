@@ -2,5 +2,5 @@ INSERT INTO pizzas (`name`, description, photo, price) VALUES('Margherita', 'Pol
 INSERT INTO pizzas (`name`, description, photo, price) VALUES('Capricciosa', 'Polpa di pomodoro 300g, 1 Mozzarella, Carciofini, Funghetti, Olive nere, Prosciutto cotto 100g', 'https://primochef.it/wp-content/uploads/2018/05/SH_pizza_capricciosa-768x512.jpg', '4');
 
 
-INSERT INTO offers (pizza_id, start_date, expire_date, title) VALUES(1, '2023-01-20', '2024-12-20', 'Margherita');
-INSERT INTO offers (pizza_id, start_date, expire_date, title) VALUES(1, '2023-11-10', '2024-10-10', 'Marinara');
+INSERT INTO offers (pizza_id, start_date, expire_date, title) VALUES(1, '2023-01-20', '2024-12-20', 'Offerta Estate');
+INSERT INTO offers (pizza_id, start_date, expire_date, title) VALUES(1, '2023-11-10', '2024-10-10', 'Offerta Inverno');

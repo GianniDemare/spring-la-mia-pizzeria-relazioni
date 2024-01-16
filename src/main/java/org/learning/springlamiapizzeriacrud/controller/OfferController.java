@@ -1,5 +1,6 @@
 package org.learning.springlamiapizzeriacrud.controller;
 
+import jakarta.validation.Valid;
 import org.learning.springlamiapizzeriacrud.model.Offer;
 import org.learning.springlamiapizzeriacrud.model.Pizza;
 import org.learning.springlamiapizzeriacrud.repository.OfferRepository;
@@ -8,38 +9,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/offers")
+@RequestMapping("/discounts")
 public class OfferController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
     @Autowired
-    private OfferRepository offerRepository;
+    private OfferRepository discountRepository;
 
     @GetMapping("/create")
-    public String create(@RequestParam(name = "pizzaId", required = true) Integer pizzaId,
+    public String offer(@RequestParam(name = "pizzaId", required = true) Integer pizzaId,
                          Model model) {
 
         Optional<Pizza> result = pizzaRepository.findById(pizzaId);
         if (result.isPresent()) {
 
-            Pizza pizzaToOffer = result.get();
+            Pizza pizzaOnSale = result.get();
 
-            model.addAttribute("pizza", pizzaToOffer);
+            model.addAttribute("pizza", pizzaOnSale);
 
             Offer newOffer = new Offer();
 
-            newOffer.setPizza(pizzaToOffer);
+            newOffer.setPizza(pizzaOnSale);
             newOffer.setStartDate(LocalDate.now());
             newOffer.setExpireDate(LocalDate.now().plusDays(30));
             model.addAttribute("offer", newOffer);
@@ -52,9 +51,16 @@ public class OfferController {
     }
 
     @PostMapping("/create")
-    public String store(Offer formOffer) {
-        Offer storedOffer = offerRepository.save(formOffer);
-        return "redirect:/pizze/show/" + storedOffer.getPizza().getId();
+    public String menu(@Valid @ModelAttribute("offer") Offer formOffer, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "offers/create";
+        }
+
+        Offer menuOffer = discountRepository.save(formOffer);
+
+        return " redirect:/pizze/show/" + menuOffer.getPizza().getId();
+
     }
 }
 

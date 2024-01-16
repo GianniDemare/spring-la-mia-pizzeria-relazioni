@@ -23,7 +23,32 @@
             <p class="text-light, text-center pb-3" th:text="${pizza.description}"></p>
             <p class="text-light, text-center" th:text="${pizza.price}+ ' ' + € "></p>
         </div>
+
     </div>
+
+    <h4 class="text-light mt-5 mb-3">Offer</h4>
+
+    <div class="alert alert-info" th:if="${pizza.offers.size() == 0}">
+        No discounts available for this pizza
+    </div>
+
+    <table class="table" th:if="${pizza.offers.size() > 0}">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>Expire Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="offer : ${pizza.offers}">
+            <td th:text="${offer.title}"></td>
+            <td th:text="${offer.startDate}"></td>
+            <td th:text="${offer.expireDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/offers/create(pizzaId=${pizza.id})}" class="btn btn-danger mb-3">Add</a>
     <div class="text-center mt-5">
         <a class="text-decoration-none text-danger" th:href="@{/pizze}">Back to the list</a>
     </div>
