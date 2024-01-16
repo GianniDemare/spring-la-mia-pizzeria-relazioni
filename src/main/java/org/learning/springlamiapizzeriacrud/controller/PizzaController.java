@@ -102,5 +102,12 @@ public class PizzaController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id " + id + " not found");
         }
     }
+
+    @GetMapping("/search")
+    public String search(@RequestParam(name = "search") String searchKeyword, Model model) {
+        List<Pizza> pizzaList = pizzaRepository.findByNameContaining(searchKeyword);
+        model.addAttribute("pizzaList", pizzaList);
+        return "pizze/list";
+    }
 }
 

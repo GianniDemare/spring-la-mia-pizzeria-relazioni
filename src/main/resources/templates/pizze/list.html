@@ -14,6 +14,16 @@
 
 <div class="container bg-transparent">
     <div th:if="${pizzaList.size() == 0}">The list is empty</div>
+    <div class="row mb-3">
+        <div class="col-8"></div>
+        <form class="col-3" id="pizza-search" th:action="@{/pizze/search}" method="get">
+            <div class="input-group">
+                <input class="form-control" type="text" name="search" id="search"
+                       placeholder="cerca una pizza per nome" th:value="${param.search}">
+                <button type="submit" class="btn btn-outline-light">Cerca</button>
+            </div>
+        </form>
+        <div class="col-1"></div>
 
     <table class="table text-light mt-5" th:unless="${pizzaList.size() == 0}">
         <tbody>
@@ -32,7 +42,7 @@
                 <a class="btn btn-danger mt-3" th:href="@{/pizze/edit/{id}(id=${pizza.id})}">Edit</a>
                 <form th:action="@{/pizze/delete/{id}(id=${pizza.id})}" method="post"
                       onsubmit="return confirm('Are you sure, you want to delete this pizza?')">
-                    <button type="submit" class="btn btn-danger mt-3">Delete<i class="fa-solid fa-trash"></i></button>
+                    <button type="submit" class="btn btn-danger mt-3">Delete</button>
                 </form>
             </td>
         </tr>
