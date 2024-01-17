@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Pizze')"></head>
+<body class="bg-black">
+
+
+
+<div class="container mt-3">
+    <h1 class="text-danger">Aggiungi un' offerta!</h1>
+    <form
+            id="create-offerta"
+            method="post"
+            th:action="@{/offerta/create}"
+            th:object="${offerta}"
+            class="row gy-3 "
+    >
+        <input type="hidden" th:field="*{pizza}">
+        <div class="col-8 text-light">
+            <label class="form-label bg-dark" for="offerName">Nome offerta</label>
+            <input class="form-control" type="text" id="offerName" th:field="*{title}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6 text-light">
+            <label class="form-label bg-dark" for="startDate">Data inizio</label>
+            <input class="form-control" type="date" id="startDate" th:field="*{startDate}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6 text-light">
+            <label class="form-label bg-dark" for="expireDate">Data fine</label>
+            <input class="form-control" type="date" id="expireDate" th:field="*{expireDate}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('expireDate')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('expireDate')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-dark me-2">Salva</button>
+            <a class="btn btn-dark" th:href="@{/pizze}">Cancella</a>
+        </div>
+    </form>
+    <div class="text-center mt-5">
+        <a class="text-decoration-none text-danger" th:href="@{/pizze}">Torna al Menù</a>
+    </div>
+</div>
+
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

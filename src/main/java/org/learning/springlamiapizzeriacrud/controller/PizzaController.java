@@ -53,10 +53,8 @@ public class PizzaController {
         if (bindingResult.hasErrors()) {
             return "pizze/create";
         }
-
         Pizza savedPizza = pizzaRepository.save(formPizza);
         return "redirect:/pizze/show/" + savedPizza.getId();
-
     }
 
     @GetMapping("/edit/{id}")
@@ -90,9 +88,7 @@ public class PizzaController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-
         Optional<Pizza> result = pizzaRepository.findById(id);
-        // Mando un messaggio di successo con la redirect
         redirectAttributes.addFlashAttribute("redirectMessage", "Pizza " + result.get().getName() + " deleted");
         if (result.isPresent()) {
 
