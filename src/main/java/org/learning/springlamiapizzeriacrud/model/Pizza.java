@@ -28,13 +28,13 @@ public class Pizza {
     @Column(nullable = false)
     private BigDecimal price;
 
+    // ATTRIBUTO CHE RAPPRESENTA LE OFFERTE (RELAZIONE UNO A MOLTI)
     @OneToMany(mappedBy = "pizza")
     private List<Offerta> OffertaList;
 
+    // ATTRIBUTO CHE RAPPRESENTA GLI INGREDIENTI (RELAZIONE MOLTI A MOLTI)
     @ManyToMany
-    private List<Ingredienti> categories;
-
-
+    private List<Ingredienti> ingredients;
 
 
     public Integer getId() {
@@ -85,11 +85,11 @@ public class Pizza {
         OffertaList = offertaList;
     }
 
-    public List<Ingredienti> getCategories() {
-        return categories;
+    public List<Ingredienti> getIngredients() {
+        return ingredients;
     }
 
-    public void setCategories(List<Ingredienti> categories) {
-        this.categories = categories;
+    public void setIngredients(List<Ingredienti> ingredients) {
+        this.ingredients = ingredients;
     }
 }

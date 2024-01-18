@@ -48,6 +48,22 @@
             </ul>
         </div>
     </div>
+
+    <!-- FORM INGREDIENTI -->
+    <div class="col-4">
+        <h3 class="bg-dark">Scegli gli ingredienti</h3>
+        <div class="form-check" th:each="ing : ${ingredientiList}">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    th:value="${ing.id}"
+                    th:id="|ing-${ing.id}|"
+                    th:field="*{ingredients}"
+            >
+            <label class="form-check-label" th:for="|ing-${ing.id}|" th:text="${ing.name}"></label>
+        </div>
+    </div>
+
     <!-- BUTTONS -->
     <div class="col-12 mt-4">
         <button type="submit" class="btn btn-dark me-2">Salva</button>

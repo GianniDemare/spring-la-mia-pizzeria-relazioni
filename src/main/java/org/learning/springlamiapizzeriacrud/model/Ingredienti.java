@@ -1,8 +1,7 @@
 package org.learning.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "ingredients")
@@ -11,8 +10,6 @@ public class Ingredienti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty
-    @Size(max = 100)
     private String name;
 
     // GETTER E SETTER

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class IngredientiController {
     public String index(Model model) {
         // AL TEMPLATE DEVO FARE ARRIVARE LA LISTA DI TUTTI GLI INGREDIENTI
         model.addAttribute("ingredientiList", ingredientiRepository.findAll());
-        return "ingredienti/index";
+        return "ingredienti/list";
     }
 
     // METODO CREATE CHE MOSTRA LA PAGINA COL FORM DI CREAZIONE DEGLI INGREDIENTI
@@ -33,7 +34,7 @@ public class IngredientiController {
     public String create(Model model) {
         // PREPARO IL TEMPLATE COL FORM DI CREAZIONE INGREDIENTI
         model.addAttribute("formIngredienti", new Ingredienti());
-        return "ingredienti/form";
+        return "ingredienti/create";
     }
 
     @PostMapping("/create")
@@ -41,7 +42,7 @@ public class IngredientiController {
         // VALIDO GLI INGREDIENTI
         if (bindingResult.hasErrors()) {
             // SE CI SONO ERRORI RICARICO LA PAGINA COL FORM
-            return "ingredienti/form";
+            return "ingredienti/create";
         }
         // SE NON CI SONO ERRORI SALVO LA CATEGORY SUL DATABASE
         ingredientiRepository.save(formIngredienti);
@@ -51,10 +52,11 @@ public class IngredientiController {
 
     // METODO CHE RESTITUISCE LA PAGINA DI MODIFICA DEGLI INGREDIENTI
     @GetMapping("edit/{id}")
-    public String edit(@PathVariable Integer id) {
+    public String edit(@PathVariable Integer id, Model model) {
         Optional<Ingredienti> result = ingredientiRepository.findById(id);
         if (result.isPresent()) {
-            return "ingredienti/form";
+            model.addAttribute("ingredient", result.get());
+            return "ingredienti/create";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Gli ingredienti con id " + id + " non sono stati trovati");
         }
@@ -66,7 +68,11 @@ public class IngredientiController {
         Optional<Ingredienti> result = ingredientiRepository.findById(id);
         if (result.isPresent()) {
             Ingredienti ingredientiToEdit = result.get();
-            return "ingredienti/edit";
+            if(bindingResult.hasErrors()) {
+                return "ingredienti/create";
+            }
+            Ingredienti savedIngredienti = ingredientiRepository.save(formIngredienti);
+            return  "redirect:/ingredienti";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Gli ingredienti con id " + id + " non sono stati trovati");
         }

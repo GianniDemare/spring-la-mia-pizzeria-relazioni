@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Creazione Ingredienti')"></head>
+<body>
+
+<main class="container">
+    <h1 th:text="${formIngredienti.id == null ? 'Create Ingredient' : 'Edit Ingredient'}">Ingredienti</h1>
+    <form id="ingredients-create" class="row" th:action="@{/ingredienti/create}" th:object="${formIngredienti}"
+          method="post">
+        <div class="col-6">
+            <label class="form-label" for="name">Nome</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 mt-4 mb-4">
+            <button type="submit" class="btn btn-danger me-2">Save</button>
+            <a class="btn btn-danger" th:href="@{/ingredienti}">Cancel</a>
+        </div>
+
+    </form>
+</main>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

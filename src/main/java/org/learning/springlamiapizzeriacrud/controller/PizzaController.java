@@ -21,11 +21,14 @@ import java.util.Optional;
 
 public class PizzaController {
     // IL CONTROLLER HA BISOGNO DELLE FUNZIONALITA DEL REPOSITORY
+
+    // REPOSITORY PIZZA
     @Autowired
     private PizzaRepository pizzaRepository;
 
+    // REPOSITORY INGREDIENTI
     @Autowired
-    private IngredientiRepository categoryRepository;
+    private IngredientiRepository ingredientiRepository;
 
     // METODO INDEX CHE MOSTRA LA LISTA DI TUTTE LE PIZZE
     @GetMapping
@@ -61,17 +64,19 @@ public class PizzaController {
         // book.setTitle("Default title");
         // PASSO TRAMITE MODEL UN ATTRIBUTO DI TIPO PIZZA VUOTO
         model.addAttribute("pizza", pizza);
-        // PASSO TRAMITE MODEL LA LISTA DI TUTTE LE CATEGORIE
-        model.addAttribute("categoryList", categoryRepository.findAll());
+        // PASSO TRAMITE MODEL LA LISTA DEGLI INGREDIENTI
+        model.addAttribute("ingredientiList", ingredientiRepository.findAll());
         return "pizze/create";
     }
 
     @PostMapping("/create")
-    public String personalizzata(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+    public String personalizzata(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
         // VALIDO I DATI DELLA PIZZA, CIOE' VERIFICO SE LA MAPPA BINDINGRESULT HA ERRORI
         if (bindingResult.hasErrors()) {
             // QUI GESTISCO CHE HO CAMPI NON VALIDI
-            // RICARCIANDO IL TEMPLATE DEL FORM
+            // RITORNO IL TEMPLATE DEL FORM
+            // PASSO TRAMITE MODEL LA LISTA DI TUTTI GLI INGREDIENTI DISPONIBILI
+            model.addAttribute("ingredientiList", ingredientiRepository.findAll());
             return "pizze/create";
         }
         Pizza savedPizza = pizzaRepository.save(formPizza);
