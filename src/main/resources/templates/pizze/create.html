@@ -14,12 +14,14 @@
 
 <div class="container bg-transparent text-light mt-3">
     <h1 class="text-danger">Crea la tua Pizza!</h1>
+    <!-- FORM MAPPATO SULL'OGGETTO PIZZA -->
     <form
             method="post"
             th:object="${pizza}"
             th:action="@{/pizze/create}"
-            class="row "
-    >
+            class="row ">
+
+        <!-- I CAMPI DETTAGLIO PIZZA -->
         <div class="col-6">
             <label class="form-label bg-dark" for="name">Nome</label>
             <input class="form-control" type="text" id="name" th:field="*{name}"
@@ -53,7 +55,7 @@
             </div>
         </div>
 
-
+        <!-- BUTTONS -->
         <div class="col-12 mt-4">
             <button type="submit" class="btn btn-dark me-2">Salva</button>
             <a class="btn btn-dark" th:href="@{/pizze}">Cancella</a>

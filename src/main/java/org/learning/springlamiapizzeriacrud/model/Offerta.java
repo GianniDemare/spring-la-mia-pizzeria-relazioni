@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "offers")
 public class Offerta {
+    // ATTRIBUTI
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,6 +19,7 @@ public class Offerta {
     @ManyToOne
     private Pizza pizza;
 
+    // GETTER E SETTER
     public Integer getId() {
         return id;
     }

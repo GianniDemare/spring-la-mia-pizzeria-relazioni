@@ -16,17 +16,21 @@
         <hr>
     </div>
     <div class="row input-group">
+        <!-- FORM DI MODIFICA DI UN OFFERTA -->
         <form th:action="@{/offerta/edit/{id}(id=${offerta.id})}" method="post"
               class="row justify-content-center gy-3"
               th:object="${offerta}">
+            <!-- CAMPO STARTDATE -->
             <div class="col-md-6 col-12">
                 <label for="startDate" class="form-label">Data Inizio</label>
                 <input id="startDate" type="date" class="from-control" th:field="*{startDate}">
             </div>
+            <!-- CAMPO EXPIREDATE -->
             <div class="col-md-6 col-12">
                 <label for="expireDate" class="form-label">Data Fine</label>
                 <input id="expireDate" type="date" class="from-control" th:field="*{expireDate}">
             </div>
+            <!-- CAMPO TITOLO -->
             <div class="col-md-12 col-12">
                 <label for="title" class="form-label text-center">Titolo</label>
                 <textarea id="title" cols="6" rows="3" class="form-control" th:field="*{title}"></textarea>
@@ -34,6 +38,7 @@
             <div class="col-4 text-center pb-3">
                 <button class="btn btn-danger" type="submit">Modifica</button>
             </div>
+            <!-- CAMPO NASCOSTO PER L'ATTRIBUTO PIZZA -->
             <input type="hidden" th:field="*{pizza}">
         </form>
     </div>

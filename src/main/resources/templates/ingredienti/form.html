@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Creazione Ingredienti')">
+</head>
+<body>
+<main class="container">
+    <h1>Creazione Ingredienti</h1>
+    <hr>
+    <form
+        id="ingredienti-form"
+        method="post"
+        th:action="@{/ingredienti/form}"
+        th:object="${formIngredienti}"
+        class="row">
+    </form>
+</main>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+
+</html>

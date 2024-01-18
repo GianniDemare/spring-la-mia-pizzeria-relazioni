@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class Pizza {
-    //attributi
+    // ATTRIBUTI
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,6 +30,9 @@ public class Pizza {
 
     @OneToMany(mappedBy = "pizza")
     private List<Offerta> OffertaList;
+
+    @ManyToMany
+    private List<Ingredienti> categories;
 
 
 
@@ -80,5 +83,13 @@ public class Pizza {
 
     public void setOffertaList(List<Offerta> offertaList) {
         OffertaList = offertaList;
+    }
+
+    public List<Ingredienti> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Ingredienti> categories) {
+        this.categories = categories;
     }
 }
