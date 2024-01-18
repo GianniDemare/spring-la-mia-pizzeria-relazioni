@@ -10,10 +10,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Crea Pizza</title>
 </head>
-<body class="bg-black" id="body_bg">
+<body class="bg-secondary">
 
 <div class="container bg-transparent text-light mt-3">
-    <h1 class="bg-dark">Crea la tua Pizza!</h1>
+    <h1>Crea la tua Pizza!</h1>
     <!-- FORM MAPPATO SULL'OGGETTO PIZZA -->
     <form
             method="post"
@@ -23,7 +23,7 @@
 
         <!-- I CAMPI DETTAGLIO PIZZA -->
         <div class="col-6">
-            <label class="form-label bg-dark" for="name">Nome</label>
+            <label class="form-label" for="name">Nome</label>
             <input class="form-control" type="text" id="name" th:field="*{name}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-6">
-            <label class="form-label bg-dark" for="price">Prezzo</label>
+            <label class="form-label" for="price">Prezzo</label>
             <input class="form-control" type="text" id="price" th:field="*{price}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
@@ -45,7 +45,7 @@
         </div>
 
          <div class="col-12 pt-2">
-            <label class="form-label bg-dark" for="description">Descrizione</label>
+            <label class="form-label" for="description">Descrizione</label>
             <textarea class="form-control" type="text" id="description" th:field="*{description}"
                       th:errorClass="is-invalid"></textarea>
             <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
@@ -57,7 +57,7 @@
 
         <!-- FORM INGREDIENTI -->
         <div class="col-4">
-            <h3 class="bg-dark">Scegli gli ingredienti</h3>
+            <h3 class="mt-2">Scegli gli ingredienti</h3>
             <div class="form-check" th:each="ing : ${ingredientiList}">
                 <input
                         class="form-check-input"
@@ -72,12 +72,12 @@
 
         <!-- BUTTONS -->
         <div class="col-12 mt-4">
-            <button type="submit" class="btn btn-dark me-2">Salva</button>
-            <a class="btn btn-dark" th:href="@{/pizze}">Cancella</a>
+            <button type="submit" class="btn btn-danger me-2">Salva</button>
+            <a class="btn btn-danger" th:href="@{/pizze}">Cancella</a>
         </div>
 
         <div class="text-center mt-5">
-            <a class="text-decoration-none text-danger" th:href="@{/pizze}">Torna al Menù</a>
+            <a class="btn btn-danger" th:href="@{/pizze}">Torna al Menù</a>
         </div>
     </form>
 

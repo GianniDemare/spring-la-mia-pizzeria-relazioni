@@ -10,9 +10,9 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Dettagli Pizza</title>
 </head>
-<body>
+<body class="bg-secondary">
 <!-- DETTAGLI PIZZA -->
-<div class="container bg-dark mt-5">
+<div class="container bg-secondary mt-5">
     <div class="row">
         <div class="col-6">
             <img class="img-fluid pb-2 mt-5" th:src="@{${pizza.photo}}">
@@ -62,7 +62,7 @@
            </table>
        </div>
         <div class="text-center mt-5">
-            <a class="text-decoration-none text-danger" th:href="@{/pizze}">Torna al Menù</a>
+            <a class="btn btn-danger" th:href="@{/pizze}">Torna al Menù</a>
         </div>
     </div>
 </div>
